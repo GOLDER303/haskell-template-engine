@@ -6,12 +6,14 @@ import Data.Aeson.KeyMap (toList)
 import qualified Data.ByteString.Lazy.Char8 as BS
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
+import System.Environment
 
 main :: IO ()
 main = do
-  inputJsonFile <- BS.readFile "input.json"
-  inputTemplateFile <- TIO.readFile "template.txt"
-  print inputTemplateFile
+  commandLineArgs <- getArgs
+
+  inputTemplateFile <- TIO.readFile $ head commandLineArgs
+  inputJsonFile <- BS.readFile $ commandLineArgs !! 1
 
   case decode inputJsonFile :: Maybe Object of
     Nothing -> putStrLn "Error parsing JSON"
