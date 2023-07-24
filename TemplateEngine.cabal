@@ -34,5 +34,6 @@ executable TemplateEngine
         aeson,
         bytestring,
         text,
+        directory,
     hs-source-dirs:   app
     default-language: Haskell2010
